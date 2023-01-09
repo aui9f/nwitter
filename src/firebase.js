@@ -1,5 +1,7 @@
+import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
 
-import { initializeApp } from 'firebase/app';
+import { getAuth } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -12,9 +14,10 @@ const firebaseConfig = {
     measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
-const firebase = initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+const auth = getAuth(app);
 
 
-
-// const app = initializeApp(firebaseConfig);
-// export default fire
+export {app, auth}
