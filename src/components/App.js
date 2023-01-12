@@ -1,34 +1,15 @@
 import AppRouter from './Router'
-import {useEffect, useState} from 'react'
-import { auth } from "firebase.js";
+import {useState} from 'react'
+import { getAuth} from "firebase/auth";
 
 function App() {
-  // c
-  // console.log(user.email)
-  const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
-  // setInterval(()=>{
-  //   const user = auth.currentUser;
-  //   console.log("user", user)
-  // },2000)
-
-  useEffect(()=>{
-    const user = auth.currentUser;
-    if (user) {
-      console.log("IF");
-      setIsLoggedIn(user);
-    } else {
-      console.log("ELSE");
-      setIsLoggedIn(false);
-      // No user is signed in.
-    }
-    setInit(true);
-  // 
-  }, [])
+  // const auth = getAuth();
+  
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(getAuth.currentUser);
   return (
     <>
-      {/* <AppRouter isLoggedIn={isLoggedIn}/> */}
-      {init?<AppRouter isLoggedIn={isLoggedIn}/>:'Initializing..'}
+    <AppRouter isLoggedIn={isLoggedIn}/>
       <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
     </>
   );
