@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 
-import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
+import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, 
+    GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -20,4 +21,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
-export {app, auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged}
+export {app, auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup}

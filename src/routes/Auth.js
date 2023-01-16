@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fbase";
+import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,signInWithPopup } from "fbase";
 
 
 const Auth = () => {
@@ -18,6 +18,17 @@ const Auth = () => {
         }else if(name==='password'){
             setPassword(value);
         }
+    }
+
+    const onSocialClick = async (event)=>{
+        
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider).then(result=>{
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+            console.log(user)
+        })
     }
 
     const onSubmit = async (event)=>{
@@ -56,7 +67,7 @@ const Auth = () => {
 
             <div>
                 {/* <p>toggleAccount</p> */}
-                <button>Continue with Google</button>
+                <button onClick={onSocialClick} name="google">Continue with Google</button>
             </div>
         </div>
     )
