@@ -8,12 +8,10 @@ function App() {
 
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
-      
       if(user){
-        console.log('user', user)
         setIsLoggedIn(user);
       }else{
-        setIsLoggedIn(false);
+        setIsLoggedIn(false)
         console.log('not user')
       }
       setInit(true);

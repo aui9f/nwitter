@@ -54,6 +54,7 @@ const Auth = () => {
     }
     return (
         <div>
+            <h1>LOGIN</h1>
             <form onSubmit={onSubmit}>
             <input name="email" type="email" placeholder="Email" 
                 required value={email} onChange={onChange}/>
@@ -68,6 +69,7 @@ const Auth = () => {
             <div>
                 {/* <p>toggleAccount</p> */}
                 <button onClick={onSocialClick} name="google">Continue with Google</button>
+                <p>{error || ''}</p>
             </div>
         </div>
     )
