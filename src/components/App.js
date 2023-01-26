@@ -5,11 +5,14 @@ import { auth, onAuthStateChanged} from "fbase";
 function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userObj, setUserObj] = useState(null);
 
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
+      
       if(user){
         setIsLoggedIn(user);
+        setUserObj(user);
       }else{
         setIsLoggedIn(false)
         console.log('not user')
@@ -19,7 +22,7 @@ function App() {
   }, [])
   return (
     <>
-    <AppRouter isLoggedIn={isLoggedIn}/>
+    <AppRouter isLoggedIn={isLoggedIn} userObj={userObj}/>
       <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
     </>
   );
