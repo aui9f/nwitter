@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-
 import { db, collection, addDoc, doc, onSnapshot   } from "fbase";
+import Nweet from 'components/Nweet'
+
 //}
 const Home = ({userObj}) => {
     const [nweet, setNweet] = useState('');
@@ -55,29 +56,14 @@ const Home = ({userObj}) => {
     }
 
     useEffect(()=>{
-        // getNweets();
-        
-        
+        // getNweets();-- 한번만 불러오기
         const unsub = onSnapshot(collection(db, "nweets"), (snapshot) => {
             const newArr = snapshot.docs.map(x=>({
                 id: x.id,
                 ...x.data(),
             }));
             setNweets(newArr);
-                
-            // doc.forEach((x) => {
-            //     const nweetObj = {...x.data(), id: x.id}
-            //         setNweets(prev=>[nweetObj, ...prev]);
-                
-            // });
         });
-        // const unsub = onSnapshot(doc(db, "nweets", 'SF'), (doc) => {
-            
-        //         console.log("Current data: ", doc.data());
-        // });
-        // console.log("unsub", unsub)
-
-
     }, []);
     
 
@@ -88,7 +74,9 @@ const Home = ({userObj}) => {
             
             <ul>
                 {nweets.map(nweet=>(
-                    <li key={nweet.id}>{nweet.text}1</li>
+            
+                    <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId===userObj.uid}/>
+                    // <li key={nweet.id}>{nweet.text}1</li>
                 ))}
             </ul>
             <hr/>

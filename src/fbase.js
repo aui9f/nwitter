@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 
 
-import { getFirestore, collection, addDoc, getDocs, doc, onSnapshot  } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, doc, onSnapshot,
+    deleteDoc
+} from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
 
 import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, 
@@ -33,5 +35,5 @@ const auth = getAuth(app);
 
 export {app, 
     auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut,
-    db, collection, addDoc, getDocs, doc, onSnapshot
+    db, collection, addDoc, getDocs, doc, onSnapshot,  deleteDoc
 }
